@@ -671,7 +671,9 @@ ui <- fluidPage(
         column(6,plotOutput("density4")))),
     tabPanel("Revision time paths",
       htmlOutput("pathsInfo"),
-      plotOutput("RevChrt",width="100%",height="2500px"))
+      plotOutput("RevChrt",width="100%",height="2500px")),
+    tabPanel("About",
+      htmlOutput("aboutInfo"))
   )
 )
 server <- function(input,output,session) {
@@ -687,6 +689,8 @@ server <- function(input,output,session) {
   output$densityInfo <- renderUI(includeHTML(dens))
   paths <- "pathsInfo.html"
   output$pathsInfo <- renderUI(includeHTML(paths))
+  about <- "aboutInfo.html"
+  output$aboutInfo <- renderUI(includeHTML(about))
   output$industry <- renderText(ind())
   ind <- reactive(input$Industry)
   revs <- reactive(Rev_table(ind(),r0))
